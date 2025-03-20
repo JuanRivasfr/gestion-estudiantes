@@ -1,71 +1,83 @@
-Documentación de Endpoints - API de Gestión de Estudiantes
+# Gestion Estudiantes
 
-Requisitos previos
+El proyecto Gestión de Estudiantes es una API REST desarrollada en Spring Boot, diseñada para administrar estudiantes y sus notas. Permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre los estudiantes y gestionar su información académica.
 
-Antes de probar los endpoints, asegúrate de que el proyecto esté correctamente configurado y en ejecución.
+## Instrucciones de Instalación
 
-1. Clonar el proyecto
-2. Iniciar el proyecto
+1. Clona el repositorio:
 
-La API se ejecutará en http://localhost:8080.
+   ```bash
+   git clone https://github.com/JuanRivasfr/gestion-estudiantes.git
+   cd gestiosn-estudiantes
+   ```
+2. Inicia la aplicación:
 
-Endpoints
+   ```bash
+   ./mvnw clean package # Esto generará un archivo .jar en la carpeta target/.
+   java -jar target/gestion-estudiantes-0.0.1-SNAPSHOT.jar # Inicia el proyecto
+   ```
 
-1. Obtener todos los estudiantes
+## Documentación de la API
 
-Endpoint: http://localhost:8080/api/estudiantes
+### URL BASE
 
-Respuesta esperada (200 OK):
+```
+http://localhost:8080
+```
+
+# Documentación de Endpoints
+
+## Creación y Gestión de Estudiantes
+
+### `GET /estudiantes`
+
+- **Descripción**: Consulta todos los estudiantes creados.
+- **Respuestas**:
+```
+[
+  {
+    "id": 1,
+    "nombre": "Juan Pérez",
+    "edad": 22,
+    "carrera": "Ingeniería en Sistemas"
+  }
+]
+//
+[]
+
+```
+
+### `POST /estudiantes`
+
+- **Descripción**: Agrega un nuevo estudiante.
+- **Ejemplo**:
+```
 {
-  "id": 1,
   "nombre": "Juan Pérez",
-  "edad": 22,
-  "carrera": "Ingeniería en Sistemas"
+  "correo": "juan@example.com",
+  "edad": 21
 }
 
-2. Obtener un estudiante por ID
+```
 
-Endpoint:
+### `GET /estudiantes/1`
 
-Ejemplo en Thunder Client:
+- **Descripción**: Obtiene un estudiante al que corresponda el ID.
+- **Respuestas**:
+```
+[
+  {
+    "id": 1,
+    "nombre": "Juan Pérez",
+    "edad": 22,
+    "carrera": "Ingeniería en Sistemas"
+  }
+]
 
-Respuesta esperada (200 OK):
+```
 
-Si el ID no existe (404 Not Found):
+### `DELETE /estudiantes/1`
 
-3. Crear un nuevo estudiante
-
-Endpoint:
-
-Ejemplo en Thunder Client:
-
-Respuesta esperada (201 Created):
-
-4. Actualizar un estudiante
-
-Endpoint:
-
-Ejemplo en Thunder Client:
-
-Respuesta esperada (200 OK):
-
-5. Eliminar un estudiante
-
-Endpoint:
-
-Ejemplo en Thunder Client:
-
-Respuesta esperada (204 No Content):
-No hay contenido en la respuesta.
-
-Si el ID no existe:
-
-Notas adicionales
-
-Si el proyecto no inicia correctamente, revisa los logs de la consola.
-
-Asegúrate de que la base de datos esté configurada correctamente en application.properties.
-
-Puedes usar Thunder Client o Postman para probar los endpoints.
-
-Si tienes dudas o necesitas ajustes, dímelo. 🚀
+- **Descripción**: Elimina un estrudiante por el ID.
+- **Respuestas**:
+204 No Content
